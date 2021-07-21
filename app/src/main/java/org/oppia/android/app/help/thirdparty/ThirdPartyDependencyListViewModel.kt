@@ -1,9 +1,9 @@
 package org.oppia.android.app.help.thirdparty
 
 import androidx.appcompat.app.AppCompatActivity
+import javax.inject.Inject
 import org.oppia.android.R
 import org.oppia.android.app.viewmodel.ObservableViewModel
-import javax.inject.Inject
 
 /** View model in [ThirdPartyDependencyListFragment]. */
 class ThirdPartyDependencyListViewModel @Inject constructor(
@@ -25,7 +25,12 @@ class ThirdPartyDependencyListViewModel @Inject constructor(
       )
     thirdPartyDependencyNames.forEachIndexed { index, name ->
       val thirdPartyDependencyItemViewModel =
-        ThirdPartyDependencyItemViewModel(activity, name, thirdPartyDependencyVersions[index])
+        ThirdPartyDependencyItemViewModel(
+          activity,
+          name,
+          thirdPartyDependencyVersions[index],
+          index
+        )
       if (index == thirdPartyDependencyNames.lastIndex) {
         thirdPartyDependencyItemViewModel.showDivider.set(false)
       } else {
